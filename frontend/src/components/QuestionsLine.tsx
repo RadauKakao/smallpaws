@@ -6,10 +6,12 @@ import SelectionButton from './SelectionButton';
 function QuestionLine({
   question,
   onChange,
+  advancedOptions,
 }: {
   question: Question;
   categoryID: CategoryID;
   onChange: (mapper: (category: Category) => Category) => void;
+  advancedOptions: boolean;
 }) {
   return (
     <div
@@ -29,7 +31,7 @@ function QuestionLine({
         onChange={(e) => onChange((cat) => cat.withQuestion(question.id, (q) => q.withValue(e.target.value)))}
       />
 
-      <div className="flex flex-row">
+      <div className="flex flex-row" hidden={!advancedOptions}>
         <IconButton onClick={() => onChange((cat) => cat.withMovedQuestion(question.id, 'up'))}>
           <ArrowUpIcon className="h-4 w-4 transition-transform group-hover:scale-90 group-hover:text-blue-500" />
         </IconButton>

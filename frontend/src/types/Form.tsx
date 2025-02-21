@@ -8,8 +8,16 @@ enum Selection {
   UNSET = 'unset',
 }
 
+type TypeIdPOJO = { prefix: string; suffix: string };
+
 const QuestionIDLiteral = 'question';
 type QuestionID = TypeID<typeof QuestionIDLiteral>;
+type QuestionPOJO = {
+  id: TypeIdPOJO;
+  selection: string;
+  value: string;
+};
+
 class Question {
   readonly id: QuestionID;
   readonly selection: Selection;
@@ -23,6 +31,16 @@ class Question {
 
   static new(value: string): Question {
     return new Question(typeid(QuestionIDLiteral), Selection.UNSET, value);
+  }
+
+  static fromPOJO(obj: QuestionPOJO): any {
+    if (obj.id.prefix !== QuestionIDLiteral) {
+      throw new Error('Invalid Question ID');
+    }
+    if (!Object.values(Selection).includes(obj.selection as Selection)) {
+      throw new Error('Invalid Selection');
+    }
+    return new Question(new TypeID(obj.id.prefix, obj.id.suffix), obj.selection as Selection, obj.value);
   }
 
   withSelection(selection: Selection): Question {
@@ -57,6 +75,12 @@ class Question {
 
 const CategoryIDLiteral = 'category';
 type CategoryID = TypeID<typeof CategoryIDLiteral>;
+type CategoryPOJO = {
+  id: TypeIdPOJO;
+  name: string;
+  questions: QuestionPOJO[];
+};
+
 class Category {
   readonly id: CategoryID;
   readonly name: string;
@@ -70,6 +94,17 @@ class Category {
 
   static new(name: string, questions: Question[]): Category {
     return new Category(typeid(CategoryIDLiteral), name, questions);
+  }
+
+  static fromPOJO(obj: CategoryPOJO): Category {
+    if (obj.id.prefix !== CategoryIDLiteral) {
+      throw new Error('Invalid Category ID');
+    }
+    return new Category(
+      new TypeID(obj.id.prefix, obj.id.suffix),
+      obj.name,
+      obj.questions.map((q) => Question.fromPOJO(q))
+    );
   }
 
   withName(name: string): Category {
@@ -111,9 +146,14 @@ class Category {
   }
 }
 
-class Form {
+type FormPOJO = {
   name: string;
-  categories: Category[];
+  categories: CategoryPOJO[];
+};
+
+class Form {
+  readonly name: string;
+  readonly categories: Category[];
 
   private constructor(name: string, categories: Category[]) {
     this.name = name;
@@ -122,6 +162,13 @@ class Form {
 
   static new(name: string, categories: Category[]): Form {
     return new Form(name, categories);
+  }
+
+  static fromPOJO(obj: FormPOJO): Form {
+    return new Form(
+      obj.name,
+      obj.categories.map((c) => Category.fromPOJO(c))
+    );
   }
 
   getCategory(categoryID: CategoryID): Category | undefined {

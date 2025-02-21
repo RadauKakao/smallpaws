@@ -1,4 +1,4 @@
-import { createContext, Dispatch, SetStateAction, useContext, useState } from 'react';
+import { createContext, Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
 import { Form } from '../types/Form';
 
 type FormContextType = {
@@ -12,7 +12,15 @@ const FormContext = createContext<FormContextType>({
 });
 
 function FormContextProvider({ children }: { children: React.ReactNode }) {
-  const [form, setForm] = useState<Form>(Form.example());
+  const [form, setForm] = useState<Form>(Form.new('Init', []));
+
+  useEffect(() => {
+    if (sessionStorage.getItem('create_new') === 'true') {
+      const form = Form.fromPOJO(JSON.parse(sessionStorage.getItem('form')!));
+      setForm(form);
+      sessionStorage.removeItem('create_new');
+    }
+  }, []);
 
   return <FormContext.Provider value={{ form, setForm }}>{children}</FormContext.Provider>;
 }

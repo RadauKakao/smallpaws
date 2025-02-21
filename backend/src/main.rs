@@ -23,7 +23,7 @@ async fn main() -> Result<(), std::io::Error> {
         .with(filter)
         .init();
 
-    let db = Database::builder().create("smallpaw.db").unwrap();
+    let db = Database::builder().create("smallpaws.db").unwrap();
 
     let app = Route::new()
         .at(

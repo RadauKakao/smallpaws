@@ -212,6 +212,18 @@ class Form {
     );
   }
 
+  getStatistics(): Record<Selection, number> {
+    return this.categories.reduce(
+      (acc, category) => {
+        category.questions.forEach((question) => {
+          acc[question.selection] = (acc[question.selection] || 0) + 1;
+        });
+        return acc;
+      },
+      {} as Record<Selection, number>
+    );
+  }
+
   static example(): Form {
     return new Form('Test Form', [
       Category.new('First Category', [
@@ -226,6 +238,19 @@ class Form {
         Question.new('Third Question').withSelection(Selection.MAYBE),
       ]),
     ]);
+  }
+
+  static generateTsRepresenation(form: Form): string {
+    let tsRepresentation: string[] = [`Form.new('${form.name}', [`];
+    form.categories.forEach((category) => {
+      tsRepresentation.push(`  Category.new('${category.name}', [`);
+      category.questions.forEach((question) => {
+        tsRepresentation.push(`    Question.new('${question.value}'),`);
+      });
+      tsRepresentation.push('  ]),');
+    });
+    tsRepresentation.push(']);');
+    return tsRepresentation.join('\n');
   }
 }
 

@@ -12,7 +12,7 @@ function App() {
       <IconButton onClick={() => navigate('/')} className="absolute top-2 left-2">
         <HomeIcon className="h-6 w-6 transition-transform group-hover:scale-90 group-hover:text-blue-400" />
       </IconButton>
-      <div className="m-auto flex w-full max-w-md flex-col items-center gap-2 overflow-visible p-4">
+      <div className="m-auto flex w-full max-w-lg flex-col items-center gap-2 overflow-visible p-4">
         <h1 className="m-4 text-center text-4xl font-extrabold">Small Paws</h1>
         <Routes>
           <Route path="/" element={<HomePage />} />

@@ -9,6 +9,8 @@ export default function FormPage() {
   const { form, setForm } = useFormContext();
   const [advancedOptions, setAdvancedOptions] = React.useState(false);
 
+  if (!form) return <h1>Form not found</h1>;
+
   return (
     <>
       <IconButton onClick={() => setAdvancedOptions(!advancedOptions)} className="absolute top-2 right-2">
@@ -24,7 +26,12 @@ export default function FormPage() {
         className="mb-4 w-fit overflow-visible border-b-1 text-center text-2xl"
         contentEditable={true}
         suppressContentEditableWarning={true}
-        onInput={(e) => setForm((prev) => prev.withName(e?.currentTarget?.textContent || ''))}
+        onInput={(e) =>
+          setForm((prev) => {
+            if (!e?.currentTarget) return prev;
+            return prev.withName(e?.currentTarget?.textContent || '');
+          })
+        }
       >
         {form?.name}
       </h2>

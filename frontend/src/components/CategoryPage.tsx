@@ -34,21 +34,21 @@ function CategoryBox({ id, advancedOptions }: { id: CategoryID; advancedOptions:
           setForm((prev) => prev.withCategory(id, (category) => category.addQuestion(Question.new(''))));
         }}
       >
-        <PlusIcon className="h-4 w-4 transition-transform group-hover:scale-90 group-hover:text-blue-500" />
+        <PlusIcon className="h-4 w-4 transition-transform group-hover:scale-90 group-hover:text-emerald-500" />
       </IconButton>
       <IconButton
         onClick={() => {
           setForm((prev) => prev.withMovedCategory(id, 'up'));
         }}
       >
-        <ArrowUpIcon className="h-4 w-4 transition-transform group-hover:scale-90 group-hover:text-blue-500" />
+        <ArrowUpIcon className="h-4 w-4 transition-transform group-hover:scale-90 group-hover:text-emerald-500" />
       </IconButton>
       <IconButton
         onClick={() => {
           setForm((prev) => prev.withMovedCategory(id, 'down'));
         }}
       >
-        <ArrowDownIcon className="h-4 w-4 transition-transform group-hover:scale-90 group-hover:text-blue-500" />
+        <ArrowDownIcon className="h-4 w-4 transition-transform group-hover:scale-90 group-hover:text-emerald-500" />
       </IconButton>
       <IconButton
         onClick={() => {

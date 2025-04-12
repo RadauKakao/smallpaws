@@ -15,9 +15,9 @@ export default function FormPage() {
     <>
       <IconButton onClick={() => setAdvancedOptions(!advancedOptions)} className="absolute top-2 right-2">
         {!advancedOptions ? (
-          <EyeIcon className="h-6 w-6 transition-transform group-hover:scale-90 group-hover:text-blue-400" />
+          <EyeIcon className="h-6 w-6 transition-transform group-hover:scale-90 group-hover:text-emerald-400" />
         ) : (
-          <WrenchScrewdriverIcon className="h-6 w-6 transition-transform group-hover:scale-90 group-hover:text-blue-400" />
+          <WrenchScrewdriverIcon className="h-6 w-6 transition-transform group-hover:scale-90 group-hover:text-emerald-400" />
         )}
       </IconButton>
 

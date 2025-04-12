@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "bradlc.vscode-tailwindcss",
+        "rust-lang.rust-analyzer",
+        "esbenp.prettier-vscode",
+        "christian-kohler.path-intellisense",
+        "dbaeumer.vscode-eslint",
+        "kamikillerto.vscode-colorize",
+        "formulahendry.auto-rename-tag",
+        "formulahendry.auto-complete-tag",
+        "firefox-devtools.vscode-firefox-debug"
+    ]
+}

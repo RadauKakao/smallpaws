@@ -1,0 +1,28 @@
+{
+    "[rust]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "rust-lang.rust-analyzer"
+    },
+    "colorize.languages": [
+        "css",
+        "sass",
+        "scss",
+        "less",
+        "postcss",
+        "sss",
+        "stylus",
+        "xml",
+        "svg",
+        "typescript",
+        "javascript",
+        "typescriptreact",
+        "javascriptreact",
+    ],
+    "editor.formatOnSave": true,
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+}

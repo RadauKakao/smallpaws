@@ -12,7 +12,7 @@ type TypeIdPOJO = { prefix: string; suffix: string };
 
 const QuestionIDLiteral = 'question';
 type QuestionID = TypeID<typeof QuestionIDLiteral>;
-type QuestionPOJO = {
+export type QuestionPOJO = {
   id: TypeIdPOJO;
   selection: string;
   value: string;
@@ -75,7 +75,7 @@ class Question {
 
 const CategoryIDLiteral = 'category';
 type CategoryID = TypeID<typeof CategoryIDLiteral>;
-type CategoryPOJO = {
+export type CategoryPOJO = {
   id: TypeIdPOJO;
   name: string;
   questions: QuestionPOJO[];
@@ -146,7 +146,7 @@ class Category {
   }
 }
 
-type FormPOJO = {
+export type FormPOJO = {
   name: string;
   categories: CategoryPOJO[];
 };

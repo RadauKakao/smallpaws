@@ -57,7 +57,6 @@ const RelationshipMenuMonoSimple = Form.new('Relationship Menu (Monogamous/Light
         Question.new('Balance time together and apart'),
         Question.new('Support to pursue independent interests'),
         Question.new('Maintaining independent friendships'),
-        Question.new('Maintaining independent romantic relationships'),
         Question.new('Alone time')
     ]),
 ]);
@@ -235,7 +234,7 @@ const RelationshipMenuMonoAdvanced = Form.new('Relationship Menu (Monogamous/Adv
         Question.new('Health/Illness'),
         Question.new('End of life')
     ]),
-    Category.new('(Co-Caregiving', [
+    Category.new('Co-Caregiving', [
         Question.new('(Found-)Family Members'),
         Question.new('Animals/Pet(s)'),
         Question.new('Plants'),
@@ -462,8 +461,8 @@ const RelationshipMenu = Form.fromPOJO(RelationshipAdv);
 export default [
     { id: 'empty', name: 'Empty', template: Empty },
     { id: 'pnp', name: 'PnP Preferences', template: PenAndPaperTemplate },
-    { id: 'rel_monosimp', name: 'Simp. Mono. Relationship', template: RelationshipMenuMonoSimple },
-    { id: 'rel_polysimp', name: 'Simp. Poly. Relationship', template: RelationshipMenuPolySimple},
-    { id: 'rel_monoadv', name: 'Adv. Mono. Relationship', template: RelationshipMenuMonoAdvanced},
-    { id: 'rel_polyadv', name: 'Adv. Poly. Relationship', template: RelationshipMenuPolyAdvanced }
+    { id: 'rel_monosimp', name: 'Reduced Monogamous Relationship Menu', template: RelationshipMenuMonoSimple },
+    { id: 'rel_polysimp', name: 'Reduced Polygamous Relationship Menu', template: RelationshipMenuPolySimple},
+    { id: 'rel_monoadv', name: 'Advanced Monogamous Relationship Menu', template: RelationshipMenuMonoAdvanced},
+    { id: 'rel_polyadv', name: 'Advanced Polygamous Relationship Menu', template: RelationshipMenuPolyAdvanced }
 ];

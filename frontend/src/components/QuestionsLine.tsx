@@ -33,10 +33,10 @@ function QuestionLine({
 
       <div className="flex flex-row" hidden={!advancedOptions}>
         <IconButton onClick={() => onChange((cat) => cat.withMovedQuestion(question.id, 'up'))}>
-          <ArrowUpIcon className="h-4 w-4 transition-transform group-hover:scale-90 group-hover:text-blue-500" />
+          <ArrowUpIcon className="h-4 w-4 transition-transform group-hover:scale-90 group-hover:text-violet-400" />
         </IconButton>
         <IconButton onClick={() => onChange((cat) => cat.withMovedQuestion(question.id, 'down'))}>
-          <ArrowDownIcon className="h-4 w-4 transition-transform group-hover:scale-90 group-hover:text-blue-500" />
+          <ArrowDownIcon className="h-4 w-4 transition-transform group-hover:scale-90 group-hover:text-violet-400" />
         </IconButton>
         <IconButton onClick={() => onChange((cat) => cat.removeQuestion(question.id))}>
           <TrashIcon className="h-4 w-4 transition-transform group-hover:scale-75 group-hover:text-red-400" />

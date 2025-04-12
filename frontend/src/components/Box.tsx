@@ -10,7 +10,7 @@ interface BoxProps {
 
 const Box: React.FC<BoxProps> = ({ title, onTitleChange, editableTitle, children, buttons }) => {
   return (
-    <div className="flex w-full flex-col items-center gap-2 bg-blue-300 p-2 text-white">
+    <div className="flex w-full flex-col items-center gap-2 bg-violet-400 p-2 text-white">
       <header className="flex h-8 w-full items-center justify-between gap-4 px-3">
         {editableTitle ? (
           <input

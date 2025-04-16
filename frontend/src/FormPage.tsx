@@ -3,11 +3,13 @@ import CategoryBox from './components/CategoryPage';
 import { useFormContext } from './contexts/FormContext';
 import { Category, Question } from './types/Form';
 import IconButton from './components/IconButton';
-import { EyeIcon, WrenchScrewdriverIcon } from '@heroicons/react/16/solid';
+import { EyeIcon, NewspaperIcon, PaintBrushIcon, WrenchScrewdriverIcon } from '@heroicons/react/16/solid';
+import { useLocalStorage } from '@uidotdev/usehooks';
 
 export default function FormPage() {
   const { form, setForm } = useFormContext();
   const [advancedOptions, setAdvancedOptions] = React.useState(false);
+  const [showIcon, setShowIcon] = useLocalStorage('showIcons', false);
 
   if (!form) return <h1>Form not found</h1>;
 
@@ -20,8 +22,16 @@ export default function FormPage() {
           <WrenchScrewdriverIcon className="h-6 w-6 transition-transform group-hover:scale-90 group-hover:text-violet-400" />
         )}
       </IconButton>
+      <IconButton onClick={() => setShowIcon(!showIcon)} className="absolute top-2 right-10">
+        {!showIcon ? (
+          <NewspaperIcon className="h-6 w-6 transition-transform group-hover:scale-90 group-hover:text-violet-400" />
+        ) : (
+          <PaintBrushIcon className="h-6 w-6 transition-transform group-hover:scale-90 group-hover:text-violet-400" />
+        )}
+      </IconButton>
 
       <h2
+        title="Form name"
         role="textbox"
         className="mb-4 w-fit overflow-visible border-b-1 text-center text-2xl"
         contentEditable={true}

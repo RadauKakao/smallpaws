@@ -7,7 +7,7 @@ import IconButton from './IconButton';
 
 function CategoryBox({ id, advancedOptions }: { id: CategoryID; advancedOptions: boolean }) {
   const { form, setForm } = useFormContext();
-  const category = form.getCategory(id);
+  const category = form?.getCategory(id);
 
   if (!category) return null;
 

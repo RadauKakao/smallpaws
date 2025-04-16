@@ -21,13 +21,14 @@ function QuestionLine({
       <SelectionButton
         selection={question.selection}
         onClick={() => onChange((cat) => cat.withQuestion(question.id, (q) => q.withNextSelection()))}
-        className="h-4 w-4 min-w-4 shrink-0 transition-transform group-hover:scale-75"
+        className="h-6 w-6 min-w-4 shrink-0 transition-transform group-hover:scale-75"
       />
 
       <input
         type="text"
         className="mx-2 min-w-10 grow border-b-1"
         value={question.value}
+        placeholder="Question"
         onChange={(e) => onChange((cat) => cat.withQuestion(question.id, (q) => q.withValue(e.target.value)))}
       />
 

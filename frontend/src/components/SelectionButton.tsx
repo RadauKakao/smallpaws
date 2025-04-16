@@ -6,6 +6,17 @@ import {
   CheckCircleIcon,
   ExclamationCircleIcon,
 } from '@heroicons/react/16/solid';
+import { useLocalStorage } from '@uidotdev/usehooks';
+import { StopIcon } from '@heroicons/react/24/outline';
+
+// Define selection type configuration for better organization
+type SelectionConfig = {
+  Icon: React.ComponentType<React.ComponentProps<'svg'>>;
+  textColor: string;
+  bgColor: string;
+  text: string;
+  shortText: string;
+};
 
 interface SelectionButtonProps {
   selection: Selection;
@@ -13,27 +24,73 @@ interface SelectionButtonProps {
   className?: string;
 }
 
-const SelectionButton: React.FC<SelectionButtonProps> = ({ selection, onClick, className }) => {
-  const getIcon = () => {
-    switch (selection) {
-      case Selection.MUST_HAVE:
-        return <ExclamationCircleIcon className={className + ' text-green-400'} />;
-      case Selection.WOULD_LIKE:
-        return <CheckCircleIcon className={className + ' text-blue-400'} />;
-      case Selection.MAYBE:
-        return <QuestionMarkCircleIcon className={className + ' text-yellow-400'} />;
-      case Selection.OFF_LIMITS:
-        return <MinusCircleIcon className={className + ' text-red-400'} />;
-      case Selection.UNSET:
-        return <div className={className + ' rounded-sm border-2 border-gray-400'} />;
-      default:
-        return null;
-    }
+const SelectionButton: React.FC<SelectionButtonProps> = ({ selection, onClick, className = '' }) => {
+  const [showIcon, _] = useLocalStorage('showIcons', false);
+
+  // Selection configuration map for easier maintenance
+  const selectionConfig: Record<Selection, SelectionConfig> = {
+    [Selection.MUST_HAVE]: {
+      Icon: ExclamationCircleIcon,
+      textColor: 'text-green-400',
+      bgColor: 'bg-green-400',
+      text: 'Must Have',
+      shortText: 'Must',
+    },
+    [Selection.WOULD_LIKE]: {
+      Icon: CheckCircleIcon,
+      textColor: 'text-blue-400',
+      bgColor: 'bg-blue-400',
+      text: 'Would Like',
+      shortText: 'Like',
+    },
+    [Selection.MAYBE]: {
+      Icon: QuestionMarkCircleIcon,
+      textColor: 'text-amber-400',
+      bgColor: 'bg-amber-500',
+      text: 'Maybe',
+      shortText: 'Maybe',
+    },
+    [Selection.OFF_LIMITS]: {
+      Icon: MinusCircleIcon,
+      textColor: 'text-red-400',
+      bgColor: 'bg-red-400',
+      text: 'Off Limits',
+      shortText: 'Limit',
+    },
+    [Selection.UNSET]: {
+      Icon: StopIcon,
+      textColor: 'text-gray-400',
+      bgColor: 'bg-gray-400',
+      text: 'Unset',
+      shortText: 'Unset',
+    },
   };
 
+  const config = selectionConfig[selection];
+
+  // Icon button rendering
+  if (showIcon) {
+    return (
+      <button
+        type="button"
+        className={`group -m-2 flex h-12 w-12 cursor-pointer items-center justify-center`}
+        onClick={onClick}
+        title={config.text}
+      >
+        <config.Icon className={`${className} ${config.textColor}`} />
+      </button>
+    );
+  }
+
+  // Text button rendering
   return (
-    <button type="button" className={`group flex h-8 w-8 cursor-pointer items-center justify-center`} onClick={onClick}>
-      {getIcon()}
+    <button
+      type="button"
+      className={`h-8 w-16 cursor-pointer font-extrabold text-white ${config.bgColor} ${className}`}
+      onClick={onClick}
+      title={config.text}
+    >
+      {config.shortText}
     </button>
   );
 };

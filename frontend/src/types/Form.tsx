@@ -33,7 +33,7 @@ class Question {
     return new Question(typeid(QuestionIDLiteral), Selection.UNSET, value);
   }
 
-  static fromPOJO(obj: QuestionPOJO): any {
+  static fromPOJO(obj: QuestionPOJO): Question {
     if (obj.id.prefix !== QuestionIDLiteral) {
       throw new Error('Invalid Question ID');
     }
@@ -241,7 +241,7 @@ class Form {
   }
 
   static generateTsRepresenation(form: Form): string {
-    let tsRepresentation: string[] = [`Form.new('${form.name}', [`];
+    const tsRepresentation: string[] = [`Form.new('${form.name}', [`];
     form.categories.forEach((category) => {
       tsRepresentation.push(`  Category.new('${category.name}', [`);
       category.questions.forEach((question) => {

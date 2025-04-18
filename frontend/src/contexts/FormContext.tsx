@@ -9,7 +9,7 @@ type FormContextType = {
 
 const FormContext = createContext<FormContextType>({
   form: undefined,
-  setForm: (_) => {},
+  setForm: () => {},
 });
 
 function FormContextProvider({ children }: { children: React.ReactNode }) {
@@ -30,17 +30,17 @@ function FormContextProvider({ children }: { children: React.ReactNode }) {
         setForm(loadedFrom);
       }
     }
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (id && !!form) {
       localStorage.setItem(`${id}-meta`, JSON.stringify({ name: form.name, date: new Date().toISOString() }));
       localStorage.setItem(`${id}-data`, JSON.stringify(form));
     }
-  }, [form]);
+  }, [id, form]);
 
   const reSetForm: Dispatch<SetStateAction<Form>> = (newForm) => {
-    if (typeof newForm === 'function') return setForm((prev) => (!!prev ? newForm(prev) : prev));
+    if (typeof newForm === 'function') return setForm((prev) => (prev ? newForm(prev) : prev));
     else return setForm(newForm);
   };
 

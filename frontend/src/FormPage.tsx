@@ -52,7 +52,7 @@ export default function FormPage() {
 
       <button
         className="flex w-fit items-center justify-center gap-2 px-2 py-1 hover:backdrop-brightness-90"
-        onClick={() => setForm((prev) => prev.addCategory(Category.new('New category', [Question.new('')])))}
+        onClick={() => setForm((prev) => prev.addCategory(Category.new('', [Question.new('')])))}
       >
         Add new Category
       </button>

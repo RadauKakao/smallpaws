@@ -25,14 +25,14 @@ interface SelectionButtonProps {
 }
 
 const SelectionButton: React.FC<SelectionButtonProps> = ({ selection, onClick, className = '' }) => {
-  const [showIcon, _] = useLocalStorage('showIcons', false);
+  const [showIcon] = useLocalStorage('showIcons', false);
 
   // Selection configuration map for easier maintenance
   const selectionConfig: Record<Selection, SelectionConfig> = {
     [Selection.MUST_HAVE]: {
       Icon: ExclamationCircleIcon,
-      textColor: 'text-green-400',
-      bgColor: 'bg-green-400',
+      textColor: 'text-green-500',
+      bgColor: 'bg-green-500',
       text: 'Must Have',
       shortText: 'Must',
     },

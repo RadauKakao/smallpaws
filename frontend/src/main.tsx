@@ -1,5 +1,3 @@
-//@ts-ignore
-import '@fontsource-variable/outfit';
 import './index.css';
 
 import { createRoot } from 'react-dom/client';

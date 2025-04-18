@@ -18,6 +18,7 @@ const Box: React.FC<BoxProps> = ({ title, onTitleChange, editableTitle, children
             className="small-caps min-w-20 shrink grow border-b-1 text-xl font-semibold tracking-widest"
             value={title}
             onChange={onTitleChange}
+            placeholder="Category"
           />
         ) : (
           <h2 className="small-caps min-w-20 grow border-b-1 text-xl font-semibold tracking-widest">{title}</h2>

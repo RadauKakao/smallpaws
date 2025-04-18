@@ -1,30 +1,15 @@
-import globals from "globals";
-import tseslint from "typescript-eslint";
-import pluginReact from "eslint-plugin-react";
-import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
+import eslint from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import pluginReact from 'eslint-plugin-react';
+import eslintConfigPrettier from 'eslint-config-prettier/flat';
+import reactCompiler from 'eslint-plugin-react-compiler';
 
-export default tseslint.config(
+export default tseslint.config([
   { ignores: ['dist'] },
-  pluginReact.configs.flat.recommended,
-  {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ['**/*.{ts,tsx}'],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-    },
-    plugins: {
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
-    },
-    rules: {
-      ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
-    },
-  },
-).concat(eslintPluginPrettier);
+  eslint.configs.recommended,
+  tseslint.configs.recommended,
+  { ...pluginReact.configs.flat.recommended, settings: { react: { version: 'detect' } } },
+  reactCompiler.configs.recommended,
+  { rules: { 'react/react-in-jsx-scope': 'off' } },
+  eslintConfigPrettier,
+]);

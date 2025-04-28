@@ -2,7 +2,6 @@
 import { Category, Form, Question } from '../types/Form';
 import RelationshipAdv from '../assets/RelationshipAdv.json';
 
-//@ts-expect-error - unused
 const RelationshipMenuMonoSimple = Form.new('Relationship Menu (Monogamous/Light)', [
   Category.new('Commitment', [
     Question.new('Marriage'),
@@ -62,7 +61,6 @@ const RelationshipMenuMonoSimple = Form.new('Relationship Menu (Monogamous/Light
   ]),
 ]);
 
-//@ts-expect-error - unused
 const RelationshipMenuPolySimple = Form.new('Relationship Menu (Polygamous/Light)', [
   Category.new('Commitment', [
     Question.new('Marriage'),
@@ -130,7 +128,6 @@ const RelationshipMenuPolySimple = Form.new('Relationship Menu (Polygamous/Light
   ]),
 ]);
 
-//@ts-expect-error - unused
 const RelationshipMenuMonoAdvanced = Form.new('Relationship Menu (Monogamous/Advanced)', [
   Category.new('Commitment', [
     Question.new('Marriage'),
@@ -260,7 +257,6 @@ const RelationshipMenuMonoAdvanced = Form.new('Relationship Menu (Monogamous/Adv
   ]),
 ]);
 
-//@ts-expect-error - unused
 const RelationshipMenuPolyAdvanced = Form.new('Relationship Menu (Polygamous/Advanced)', [
   Category.new('Commitment', [
     Question.new('Marriage'),
@@ -462,9 +458,9 @@ const RelationshipMenu = Form.fromPOJO(RelationshipAdv);
 
 export default [
   { id: 'empty', name: 'Empty', template: Empty },
-  { id: 'pnp', name: 'PnP Preferences', template: PenAndPaperTemplate } /*
-    { id: 'rel_monosimp', name: 'Reduced Monogamous Relationship Menu', template: RelationshipMenuMonoSimple },
-    { id: 'rel_polysimp', name: 'Reduced Polygamous Relationship Menu', template: RelationshipMenuPolySimple},
-    { id: 'rel_monoadv', name: 'Advanced Monogamous Relationship Menu', template: RelationshipMenuMonoAdvanced},
-    { id: 'rel_polyadv', name: 'Advanced Polygamous Relationship Menu', template: RelationshipMenuPolyAdvanced }*/,
+  { id: 'pnp', name: 'PnP Preferences', template: PenAndPaperTemplate },
+  { id: 'rel_monosimp', name: 'Reduced Monogamous Relationship Menu', template: RelationshipMenuMonoSimple },
+  { id: 'rel_polysimp', name: 'Reduced Polygamous Relationship Menu', template: RelationshipMenuPolySimple },
+  { id: 'rel_monoadv', name: 'Advanced Monogamous Relationship Menu', template: RelationshipMenuMonoAdvanced },
+  { id: 'rel_polyadv', name: 'Advanced Polygamous Relationship Menu', template: RelationshipMenuPolyAdvanced },
 ];
